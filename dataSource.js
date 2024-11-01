@@ -6,11 +6,11 @@ const databaseId = process.env.NOTION_API_DATABASE;
 
 exports.getDatabase = async function () {
   const response = await notion.databases.query({ database_id: databaseId });
-
+ 
   const responseResults = response.results.map((page) => {
     return {
       id: page.id,
-      name: page.properties.Name.title[0]?.plain_text,
+      name: page.properties.Name.title[0]?.plain_text,  
       tags: page.properties.Tags.multi_select.map((tag) => tag.name), 
       // CHQ: unsure why the following lines did not work. Will debug later
       // link: page.properties["Link"].url,
